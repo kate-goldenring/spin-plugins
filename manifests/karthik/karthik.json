@@ -9,13 +9,13 @@
         {
             "os": "linux",
             "arch": "amd64",
-            "url": "https://raw.githubusercontent.com/kate-goldenring/spin-plugins/second-plugin/karthik/karthik.tar.gz",
+            "url": "https://raw.githubusercontent.com/kate-goldenring/spin-plugins/second-plugin/example2/karthik.tar.gz",
             "sha256": "8fef97661da63ef0a7057604f5777268c75c972e308965871ca9b331da87f0a8"
         },
         {
             "os": "osx",
             "arch": "aarch64",
-            "url": "https://raw.githubusercontent.com/kate-goldenring/spin-plugins/second-plugin/karthik/karthik.tar.gz",
+            "url": "https://raw.githubusercontent.com/kate-goldenring/spin-plugins/second-plugin/example2/karthik.tar.gz",
             "sha256": "8fef97661da63ef0a7057604f5777268c75c972e308965871ca9b331da87f0a8"
         }
     ]
