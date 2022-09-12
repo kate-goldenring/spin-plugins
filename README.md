@@ -32,10 +32,21 @@ Spin will use the [`semver`](https://docs.rs/semver/1.0.13/semver/struct.Version
 
 A plugin schema can be validated locally using any JSON schema validator. The spin plugins GitHub workflow that must succeed before a plugin is merged uses [ajv](https://ajv.js.org/), which can also be run locally as follows:
 
-1. Install [`ajv-cli`](https://www.npmjs.com/package/ajv-cli)
-1. Get the current schema used by spin and validate all json plugin manifests against it:
+1. Install [`yj`](https://github.com/sclevine/yj) for converting TOML to JSON.
+1. Install [`ajv-cli`](https://www.npmjs.com/package/ajv-cli) for validating that the converted JSON file follows the manifest schema.
+1. Specify the name of the plugin manifest that will be converted and tested.
+
+    ```sh
+    export PLUGIN_NAME=<insert name>
+    ```
+
+1. Convert your manifest to an `out.json` file. Then, get the current schema used by spin and validate your converted plugin manifest against it:
 
     ```sh
     export JSON_SCHEMA_VERSION=$(cat json-schema/version.txt)
-    ajv -s json-schema/spin-plugin-manifest-schema-$JSON_SCHEMA_VERSION.json -d "manifests/*/*.json" --spec=draft2019
+    yj -itj < manifests/$PLUGIN_NAME/$PLUGIN_NAME.toml > $PLUGIN_NAME.json
+    ajv -s json-schema/spin-plugin-manifest-schema-$JSON_SCHEMA_VERSION.json -d "out.json" --spec=draft2019
+    rm out.json
     ```
+
+> Note: If testing a specific version of a plugin, the conversion line should be modified to point to the appropriate versioned file name.
